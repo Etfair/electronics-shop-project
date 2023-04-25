@@ -21,7 +21,6 @@ class Item:
         self.price = price
         self.quantity = quantity
 
-
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -38,10 +37,12 @@ class Item:
         self.price *= Item.pay_rate
         return self.price
 
-
     @classmethod
     def instantiate_from_csv(cls):
-       with open('..\src\items.csv', newline='') as csvfile:
+        """
+        Открытие файла и добавление в класс имя, цена и количество
+        """
+        with open('..\src\items.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             cls.all.clear()
             for row in reader:
