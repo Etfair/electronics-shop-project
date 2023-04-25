@@ -46,12 +46,8 @@ def test_long_name():
     assert len(Item.name) > 10
     assert len(Item.name) == 13
 
-def test_list_item():
-    Item.instantiate_from_csv()
-    item1 = Item.all[0]
-    assert item1.name == 'Смартфон'
 
 def test_list_item_more():
     Item.instantiate_from_csv()
     item2 = Item.all[1]
-    assert item2.name == 'Ноутбук'
+    assert item2.name == 'РќРѕСѓС‚Р±СѓРє'

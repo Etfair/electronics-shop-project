@@ -20,7 +20,6 @@ class Item:
         self.__name = name
         self.price = price
         self.quantity = quantity
-        self.all.append(self)
 
 
     def calculate_total_price(self) -> float:
@@ -42,13 +41,12 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-       item = []
-
-       with open('C:\\Users\\Unnamed\\OneDrive\\Документы\\GitHub\\electronics-shop-project\\src\\items.csv', newline='') as csvfile:
+       with open('..\src\items.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
+            cls.all.clear()
             for row in reader:
-                item = (cls(row['name'], row['price'], row['quantity']))
-            return item
+                cls.all.append(cls(row['name'], int(row['price']), int(row['quantity'])))
+            return len(cls.all)
 
     @staticmethod
     def string_to_number(item):
