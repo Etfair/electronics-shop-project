@@ -6,20 +6,19 @@ from src.item import Item
 
 @pytest.fixture
 
-def item1():
+def item():
     return Item("Смартфон", 10000, 20)
 
 
-
-def test_calculate_total_price(item1):
+def test_calculate_total_price(item):
     """ Подсчитывает общую стоимость смартфонов в магазине"""
-    assert item1.calculate_total_price() == 200000.0
+    assert item.calculate_total_price() == 200000.0
 
 
-def test_apply_discount(item1):
+def test_apply_discount(item):
     """Скидка"""
     Item.pay_rate = 0.8
-    assert item1.apply_discount() == 8000.0
+    assert item.apply_discount() == 8000.0
 
 
 def test_string_to_number():
@@ -29,25 +28,18 @@ def test_string_to_number():
     assert Item.string_to_number('5.5') == 5
 
 
-def test_instantiate_from_csv():
-    """Количество товара"""
-    Item.instantiate_from_csv()
-    assert len(Item.all) == 5
-
-
 def test_name():
     """Проверяет количество букв на названии товара"""
     Item.name = 'Смартфон'
     assert len(Item.name) < 10
 
-def test_long_name():
-    """Проверяет длинные названия товаров"""
-    Item.name = 'СуперСмартфон'
-    assert len(Item.name) > 10
-    assert len(Item.name) == 13
+
+def test_list_item_more(item):
+    item.instantiate_from_csv()
+    assert len(item.all) == 5
+    assert item.all[0].name == 'Смартфон'
 
 
-def test_list_item_more():
-    Item.instantiate_from_csv()
-    item2 = Item.all[1]
-    assert item2.name == 'РќРѕСѓС‚Р±СѓРє'
+def test_string_to_number(item):
+    assert isinstance(item.string_to_number(item.quantity), int)
+

@@ -42,7 +42,7 @@ class Item:
         """
         Открытие файла и добавление в класс имя, цена и количество
         """
-        with open('..\src\items.csv', newline='') as csvfile:
+        with open('..\src\items.csv', encoding='windows-1251', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             cls.all.clear()
             for row in reader:
@@ -62,5 +62,9 @@ class Item:
 
     @name.setter
     def name(self, name):
-        if len(name) > 10:
+        if len(name) <= 10:
+            self.__name = name
+        else:
             print('Длина наименования товара превышает 10 символов')
+
+
