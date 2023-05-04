@@ -11,25 +11,34 @@ def item():
 
 
 def test_calculate_total_price(item):
-    """ Подсчитывает общую стоимость смартфонов в магазине"""
+    """
+    Подсчитывает общую стоимость смартфонов в магазине
+    """
     assert item.calculate_total_price() == 200000.0
 
 
 def test_apply_discount(item):
-    """Скидка"""
+    """
+    Скидка
+    """
     Item.pay_rate = 0.8
-    assert item.apply_discount() == 8000.0
+    item.apply_discount()
+    assert item.price == 8000.0
 
 
 def test_string_to_number():
-    """Количество строк"""
+    """
+    Количество строк
+    """
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
 
 
 def test_name():
-    """Проверяет количество букв на названии товара"""
+    """
+    Проверяет количество букв на названии товара
+    """
     Item.name = 'Смартфон'
     assert len(Item.name) < 10
 
@@ -40,7 +49,7 @@ def test_list_item_more(item):
     assert item.all[0].name == 'Смартфон'
 
 
-def test_string_to_number(item):
+def test_string_to_number_more(item):
     assert isinstance(item.string_to_number(item.quantity), int)
 
 

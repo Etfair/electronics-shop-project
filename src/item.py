@@ -70,3 +70,11 @@ class Item:
         if len(name) > 10:
             raise Exception("Длина наименования товара превышает 10 символов.")
         self.__name = name
+
+    def __add__(self, other):
+        """
+        Складывает количество товара из разных экземпляров
+        """
+        if not isinstance(other, Item):
+            raise ValueError('Складывать можно только объекты Item и дочерние от них.')
+        return int(self.quantity + other.quantity)
